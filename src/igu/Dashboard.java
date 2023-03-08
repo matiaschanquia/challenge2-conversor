@@ -13,16 +13,23 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.JRadioButton;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Dashboard extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel contentPane, panelContent;
 
+	private MyButton myButtonMedidas, myButtonMonedas;
 	/**
 	 * Create the frame.
 	 */
@@ -64,15 +71,84 @@ public class Dashboard extends JFrame {
 			}
 		});
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_1.setBounds(122, 40, 109, 23);
-		panelDashboard.add(rdbtnNewRadioButton_1);
+		myButtonMedidas = new MyButton();
+		myButtonMedidas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				myButtonMonedas.setBorderColor(new Color(0, 0, 0, 0));
+				myButtonMedidas.setBorderColor(new Color(0, 255, 232));
+				repaint();
+				cambiarPanel(new Medidas());
+			}
+		});
+		myButtonMedidas.setColor(new Color(213, 213, 213));
+		myButtonMedidas.setBackground(new Color(213, 213, 213));
+		myButtonMedidas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		myButtonMedidas.setColorClick(new Color(192, 192, 192));
+		myButtonMedidas.setColorOver(new Color(192, 192, 192));
+		myButtonMedidas.setForeground(new Color(0, 0, 0));
+		myButtonMedidas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		rdbtnNewRadioButton.setRequestFocusEnabled(false);
-		rdbtnNewRadioButton.setRolloverEnabled(false);
-		rdbtnNewRadioButton.setBounds(6, 40, 109, 23);
-		panelDashboard.add(rdbtnNewRadioButton);
+		panelContent = new JPanel();
+		panelContent.setBounds(0, 77, 387, 302);
+		panelContent.setBackground(new Color(0, 0, 0, 0));
+		panelDashboard.add(panelContent);
+		panelContent.setLayout(null);
+		
+		
+		MyLabelLink myLabelLinkPort = new MyLabelLink("https://matiaschanquia.github.io/portafolio-v1/", "Matias Chanquia");
+		myLabelLinkPort.setForeground(new Color(0, 0, 0));
+		myLabelLinkPort.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		myLabelLinkPort.setBounds(143, 280, 105, 16);
+		panelContent.add(myLabelLinkPort);
+		
+		SinElegir sinElegir = new SinElegir();
+		sinElegir.setSize(387, 302);
+		sinElegir.setLocation(0, 0);
+		panelContent.add(sinElegir);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setBounds(0, 77, 387, 2);
+		panelDashboard.add(btnNewButton);
+		
+		myButtonMedidas.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 11));
+		myButtonMedidas.setBorderColor(new Color(213, 213, 213, 0));
+		myButtonMedidas.setLocation(204, 44);
+		myButtonMedidas.setSize(153, 23);
+		myButtonMedidas.setText("Conversor de Medida");
+		panelDashboard.add(myButtonMedidas);
+		
+		myButtonMonedas = new MyButton();
+		myButtonMonedas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				myButtonMedidas.setBorderColor(new Color(0, 0, 0, 0));
+				myButtonMonedas.setBorderColor(new Color(0, 255, 232));
+				repaint();
+				cambiarPanel(new Monedas());
+			}
+		});
+		myButtonMonedas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		myButtonMonedas.setColor(new Color(213, 213, 213));
+		myButtonMonedas.setBackground(new Color(213, 213, 213));
+		myButtonMonedas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		myButtonMonedas.setColorClick(new Color(192, 192, 192));
+		myButtonMonedas.setColorOver(new Color(192, 192, 192));
+		myButtonMonedas.setForeground(new Color(0, 0, 0));
+		myButtonMonedas.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 11));
+		myButtonMonedas.setBorderColor(new Color(213, 213, 213, 0));
+		myButtonMonedas.setLocation(36, 43);
+		myButtonMonedas.setSize(153, 23);
+		myButtonMonedas.setText("Conversor de Moneda");
+		panelDashboard.add(myButtonMonedas);
 		myButtonExit.setLocation(302, 6);
 		myButtonExit.setSize(80, 27);
 		myButtonExit.setText("Cerrar");
@@ -86,11 +162,15 @@ public class Dashboard extends JFrame {
 		labelBg.setIcon(imageIconBg);
 		labelBg.setBounds(0, 0, 387, 379);
 		panelDashboard.add(labelBg);
+	}
+	
+	public void cambiarPanel(JPanel p) {
+		p.setSize(387, 302);
+		p.setLocation(0, 0); 
 		
-		JPanel panelContent = new JPanel();
-		panelContent.setBounds(0, 77, 387, 302);
-		panelDashboard.add(panelContent);
-		panelContent.setLayout(null);
-		
+		panelContent.removeAll();
+		panelContent.add(p, BorderLayout.CENTER);
+		panelContent.revalidate();
+		panelContent.repaint();
 	}
 }

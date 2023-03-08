@@ -1,7 +1,5 @@
 package logica;
 
-import javax.swing.JOptionPane;
-
 import igu.Dashboard;
 
 public class Main {
@@ -11,6 +9,6 @@ public class Main {
 		dashboard.setVisible(true);
 		
 		dashboard.setLocationRelativeTo(null);
-		
+			
 	}
 }
