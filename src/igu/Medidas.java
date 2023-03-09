@@ -22,8 +22,14 @@ public class Medidas extends JPanel {
 		JLabel labelTitle = new JLabel("Conversor de Medida");
 		labelTitle.setForeground(new Color(0, 0, 0));
 		labelTitle.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 17));
-		labelTitle.setBounds(109, 7, 176, 21);
+		labelTitle.setBounds(109, 3, 176, 21);
 		add(labelTitle);
+		
+		MyLabelLink myLabelLinkPort = new MyLabelLink("https://matiaschanquia.github.io/portafolio-v1/", "Matias Chanquia");
+		myLabelLinkPort.setBounds(137, 280, 105, 16);
+		add(myLabelLinkPort);
+		myLabelLinkPort.setForeground(Color.BLACK);
+		myLabelLinkPort.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 	}
 
 }

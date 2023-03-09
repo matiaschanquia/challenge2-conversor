@@ -93,28 +93,31 @@ public class Dashboard extends JFrame {
 			}
 		});
 		
+		JLabel labelSeparadorGral = new JLabel("");
+		ImageIcon imageIconLinea = new ImageIcon(Dashboard.class.getResource("/img/bg-negro.jpg"));
+		Image imageLinea = imageIconLinea.getImage();
+		Image newImageLinea = imageLinea.getScaledInstance(387, 2, java.awt.Image.SCALE_SMOOTH);
+		imageIconLinea = new ImageIcon(newImageLinea);
+		labelSeparadorGral.setIcon(imageIconLinea);
+		labelSeparadorGral.setBounds(0, 74, 387, 2);
+		panelDashboard.add(labelSeparadorGral);
+		
 		panelContent = new JPanel();
 		panelContent.setBounds(0, 77, 387, 302);
 		panelContent.setBackground(new Color(0, 0, 0, 0));
 		panelDashboard.add(panelContent);
 		panelContent.setLayout(null);
 		
-		
-		MyLabelLink myLabelLinkPort = new MyLabelLink("https://matiaschanquia.github.io/portafolio-v1/", "Matias Chanquia");
-		myLabelLinkPort.setForeground(new Color(0, 0, 0));
-		myLabelLinkPort.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-		myLabelLinkPort.setBounds(143, 280, 105, 16);
-		panelContent.add(myLabelLinkPort);
-		
 		SinElegir sinElegir = new SinElegir();
 		sinElegir.setSize(387, 302);
 		sinElegir.setLocation(0, 0);
 		panelContent.add(sinElegir);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBackground(new Color(0, 0, 0));
-		btnNewButton.setBounds(0, 77, 387, 2);
-		panelDashboard.add(btnNewButton);
+		MyLabelLink myLabelLinkPort = new MyLabelLink("https://matiaschanquia.github.io/portafolio-v1/", "Matias Chanquia");
+		myLabelLinkPort.setBounds(137, 280, 105, 16);
+		sinElegir.add(myLabelLinkPort);
+		myLabelLinkPort.setForeground(Color.BLACK);
+		myLabelLinkPort.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		
 		myButtonMedidas.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 11));
 		myButtonMedidas.setBorderColor(new Color(213, 213, 213, 0));
@@ -133,10 +136,7 @@ public class Dashboard extends JFrame {
 				cambiarPanel(new Monedas());
 			}
 		});
-		myButtonMonedas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		myButtonMonedas.setColor(new Color(213, 213, 213));
 		myButtonMonedas.setBackground(new Color(213, 213, 213));
 		myButtonMonedas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -162,6 +162,7 @@ public class Dashboard extends JFrame {
 		labelBg.setIcon(imageIconBg);
 		labelBg.setBounds(0, 0, 387, 379);
 		panelDashboard.add(labelBg);
+		
 	}
 	
 	public void cambiarPanel(JPanel p) {
