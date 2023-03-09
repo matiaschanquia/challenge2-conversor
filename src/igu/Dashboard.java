@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import button.MyButton;
+import logica.DeArgExtCambio;
+import logica.DeExtArgCambio;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -24,18 +26,23 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
+import java.awt.Window.Type;
 
 public class Dashboard extends JFrame {
 
 	private JPanel contentPane, panelContent;
 
 	private MyButton myButtonMedidas, myButtonMonedas;
+	
+	private static Monedas monedas;
 	/**
 	 * Create the frame.
 	 */
 	public Dashboard() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/img/logo-alura.png")));
 		setUndecorated(true);
+		setTitle("Conversor");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/img/logo-alura.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 387, 379);
 		contentPane = new JPanel();
@@ -127,13 +134,19 @@ public class Dashboard extends JFrame {
 		panelDashboard.add(myButtonMedidas);
 		
 		myButtonMonedas = new MyButton();
+		myButtonMonedas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		myButtonMonedas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				myButtonMedidas.setBorderColor(new Color(0, 0, 0, 0));
 				myButtonMonedas.setBorderColor(new Color(0, 255, 232));
 				repaint();
-				cambiarPanel(new Monedas());
+				monedas = new Monedas();
+				cambiarPanel(monedas);
+				monedas.getResultadoMonedas().getTxtMonto().requestFocus();
 			}
 		});
 		
@@ -173,5 +186,53 @@ public class Dashboard extends JFrame {
 		panelContent.add(p, BorderLayout.CENTER);
 		panelContent.revalidate();
 		panelContent.repaint();
+	}
+	
+	public static String obtenerResultadoMoneda(String montoString) {
+		
+		double monto;
+		
+		try {
+			monto = Double.parseDouble(montoString);
+		} catch (Exception e) {
+			return "Monto incorrecto";
+		}
+
+		double resMonto = 0;
+		String resMoneda;
+		
+		if(monedas.getArgExt().isSelected()) {
+			if(monedas.getDeArgExt().getArgDol().isSelected()) {
+				resMonto = Math.round((monto * DeArgExtCambio.getArgDol()) * 100.0) / 100.0;
+				resMoneda = "Dólar";
+			} else if(monedas.getDeArgExt().getArgEur().isSelected()) {
+				resMonto = Math.round((monto * DeArgExtCambio.getArgEur()) * 100.0) / 100.0;
+				resMoneda = "Euros";
+			} else if(monedas.getDeArgExt().getArgLib().isSelected()) {
+				resMonto = Math.round((monto * DeArgExtCambio.getArgLib()) * 100.0) / 100.0;
+				resMoneda = "Libras Est.";
+			} else if(monedas.getDeArgExt().getArgYen().isSelected()) {
+				resMonto = Math.round((monto * DeArgExtCambio.getArgYen()) * 100.0) / 100.0;
+				resMoneda = "Yen Jap.";
+			} else {
+				resMonto = Math.round((monto * DeArgExtCambio.getArgWon()) * 100.0) / 100.0;
+				resMoneda = "Won sul.";
+			}
+		} else {
+			if(monedas.getDeExtArg().getArgDol().isSelected()) {
+				resMonto = Math.round((monto * DeExtArgCambio.getArgDol()) * 100.0) / 100.0;
+			} else if(monedas.getDeExtArg().getArgEur().isSelected()) {
+				resMonto = Math.round((monto * DeExtArgCambio.getArgEur()) * 100.0) / 100.0;
+			} else if(monedas.getDeExtArg().getArgLib().isSelected()) {
+				resMonto = Math.round((monto * DeExtArgCambio.getArgLib()) * 100.0) / 100.0;
+			} else if(monedas.getDeExtArg().getArgYen().isSelected()) {
+				resMonto = Math.round((monto * DeExtArgCambio.getArgYen()) * 100.0) / 100.0;
+			} else {
+				resMonto = Math.round((monto * DeExtArgCambio.getArgWon()) * 100.0) / 100.0;
+			}
+			resMoneda = "ARG";
+		}
+		
+		return resMonto + " " + resMoneda;
 	}
 }

@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,21 +23,39 @@ public class Monedas extends JPanel {
 	 */
 	
 	private JRadioButton argExt, extArg;
+	public JRadioButton getArgExt() {
+		return argExt;
+	}
+	public JRadioButton getExtArg() {
+		return extArg;
+	}
 	private ButtonGroup grupoDeCambio;
 	private JPanel panelOpcionesMoneda;
+	public JPanel getPanelOpcionesMoneda() {
+		return panelOpcionesMoneda;
+	}
 	private DeArgExt deArgExt;
+	public DeArgExt getDeArgExt() {
+		return deArgExt;
+	}
 	private DeExtArg deExtArg;
+	public DeExtArg getDeExtArg() {
+		return deExtArg;
+	}
 	private JPanel panelResultado;
 	private JLabel labelSeparador;
+	private JLabel labelSeparador2;
+	private ResultadoMonedas resultadoMonedas;
 	
+	public ResultadoMonedas getResultadoMonedas() {
+		return resultadoMonedas;
+	}
+
 	public Monedas() {
 		panelTransparent();
 		setLayout(null);
 		
 		grupoDeCambio = new ButtonGroup();
-		
-		
-		
 		
 		deExtArg = new DeExtArg();
 		deExtArg.setBounds(110, 5, 1, 1);
@@ -81,11 +101,20 @@ public class Monedas extends JPanel {
 		add(panelResultado);
 		panelResultado.setLayout(null);
 		
-		ResultadoMonedas resultadoMonedas = new ResultadoMonedas();
+		resultadoMonedas = new ResultadoMonedas();
 		resultadoMonedas.setBounds(82, 5, 1, 1);
 		resultadoMonedas.setSize(166, 222);
 		resultadoMonedas.setLocation(0, 0);
 		panelResultado.add(resultadoMonedas);
+		
+		labelSeparador2 = new JLabel("");
+		ImageIcon imageIconLinea = new ImageIcon(Dashboard.class.getResource("/img/bg-negro.jpg"));
+		Image imageLinea = imageIconLinea.getImage();
+		Image newImageLinea = imageLinea.getScaledInstance(2, 222, java.awt.Image.SCALE_SMOOTH);
+		imageIconLinea = new ImageIcon(newImageLinea);
+		labelSeparador2.setIcon(imageIconLinea);
+		labelSeparador2.setBounds(0, 0, 2, 222);
+		resultadoMonedas.add(labelSeparador2);
 		
 		panelOpcionesMoneda = new JPanel();
 		panelOpcionesMoneda.setBackground(new Color(0, 0, 0, 0));

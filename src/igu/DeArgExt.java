@@ -10,6 +10,26 @@ import javax.swing.JRadioButton;
 public class DeArgExt extends JPanel {
 
 	private JRadioButton argDol, argEur, argLib, argYen, argWon;
+	public JRadioButton getArgDol() {
+		return argDol;
+	}
+
+	public JRadioButton getArgEur() {
+		return argEur;
+	}
+	
+	public JRadioButton getArgLib() {
+		return argLib;
+	}
+
+	public JRadioButton getArgYen() {
+		return argYen;
+	}
+
+	public JRadioButton getArgWon() {
+		return argWon;
+	}
+
 	private ButtonGroup grupoDeArgExt;
 	
 	public DeArgExt() {

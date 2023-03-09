@@ -10,6 +10,25 @@ import javax.swing.JRadioButton;
 public class DeExtArg extends JPanel {
 
 	private JRadioButton argDol, argEur, argLib, argYen, argWon;
+	public JRadioButton getArgDol() {
+		return argDol;
+	}
+
+	public JRadioButton getArgEur() {
+		return argEur;
+	}
+
+	public JRadioButton getArgLib() {
+		return argLib;
+	}
+
+	public JRadioButton getArgYen() {
+		return argYen;
+	}
+
+	public JRadioButton getArgWon() {
+		return argWon;
+	}
 	private ButtonGroup grupoDeArgExt;
 	
 	public DeExtArg() {
@@ -57,7 +76,7 @@ public class DeExtArg extends JPanel {
 		add(argYen);
 		add(argWon);
 	}
-	
+
 	private void panelTransparent() {
 		setBackground(new Color(0, 103, 218));
 	}

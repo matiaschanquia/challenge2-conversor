@@ -9,6 +9,6 @@ public class Main {
 		dashboard.setVisible(true);
 		
 		dashboard.setLocationRelativeTo(null);
-			
+		
 	}
 }
