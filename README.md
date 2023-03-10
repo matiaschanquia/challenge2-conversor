@@ -31,6 +31,8 @@ La app cuenta con dos opciones de conversores: conversor de monedas y conversor 
 
 Cada conversor cuenta con dos opciones de las que derivan las demas opciones.
 
+Al estar en un conversor, este estará marcado con borde celeste.
+
 El conversor de monedas cuenta con la opción de pesos argentinos a otra moneda y de otra moneda a pesos argentinos (las otras monedas serían: dólar, euros, libra esterlina, yen japonés y won sul-coreano).
 
 El conversor de medidas cuenta con la opción de metros a otra medidas y de otra medidas a metros (las otras medidas serían: kilómetro, centímetro, milímetro, yarda y pulgada).
