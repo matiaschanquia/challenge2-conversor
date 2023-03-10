@@ -16,7 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ResultadoMonedas extends JPanel {
+public class Resultado extends JPanel {
 	private JTextField txtMonto;
 	
 	public JTextField getTxtMonto() {
@@ -28,7 +28,7 @@ public class ResultadoMonedas extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ResultadoMonedas() {
+	public Resultado() {
 		this.setBackground(new Color(0, 128, 0));
 		setLayout(null);
 		
@@ -36,7 +36,7 @@ public class ResultadoMonedas extends JPanel {
 		myButtonConvertir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String res = Dashboard.obtenerResultadoMoneda(txtMonto.getText());
+				String res = Dashboard.obtenerResultado(txtMonto.getText());
 				
 				txtResultado.setText(res);
 			}

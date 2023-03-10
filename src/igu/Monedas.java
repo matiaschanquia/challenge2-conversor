@@ -45,9 +45,9 @@ public class Monedas extends JPanel {
 	private JPanel panelResultado;
 	private JLabel labelSeparador;
 	private JLabel labelSeparador2;
-	private ResultadoMonedas resultadoMonedas;
+	private Resultado resultadoMonedas;
 	
-	public ResultadoMonedas getResultadoMonedas() {
+	public Resultado getResultadoMonedas() {
 		return resultadoMonedas;
 	}
 
@@ -101,7 +101,7 @@ public class Monedas extends JPanel {
 		add(panelResultado);
 		panelResultado.setLayout(null);
 		
-		resultadoMonedas = new ResultadoMonedas();
+		resultadoMonedas = new Resultado();
 		resultadoMonedas.setBounds(82, 5, 1, 1);
 		resultadoMonedas.setSize(166, 222);
 		resultadoMonedas.setLocation(0, 0);

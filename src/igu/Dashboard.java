@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import button.MyButton;
 import logica.DeArgExtCambio;
 import logica.DeExtArgCambio;
+import logica.DeMOtroConversor;
+import logica.DeOtroMConversor;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -34,11 +36,13 @@ public class Dashboard extends JFrame {
 	private JPanel contentPane, panelContent;
 
 	private MyButton myButtonMedidas, myButtonMonedas;
-	
+		
 	private static Monedas monedas;
-	/**
-	 * Create the frame.
-	 */
+	
+	private static Medidas medidas;
+	
+	private static int converSelec = 0;
+
 	public Dashboard() {
 		setUndecorated(true);
 		setTitle("Conversor");
@@ -82,10 +86,12 @@ public class Dashboard extends JFrame {
 		myButtonMedidas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				converSelec = 1;
 				myButtonMonedas.setBorderColor(new Color(0, 0, 0, 0));
 				myButtonMedidas.setBorderColor(new Color(0, 255, 232));
 				repaint();
-				cambiarPanel(new Medidas());
+				medidas = new Medidas();
+				cambiarPanel(medidas);
 			}
 		});
 		myButtonMedidas.setColor(new Color(213, 213, 213));
@@ -141,6 +147,7 @@ public class Dashboard extends JFrame {
 		myButtonMonedas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				converSelec = 0;
 				myButtonMedidas.setBorderColor(new Color(0, 0, 0, 0));
 				myButtonMonedas.setBorderColor(new Color(0, 255, 232));
 				repaint();
@@ -188,51 +195,90 @@ public class Dashboard extends JFrame {
 		panelContent.repaint();
 	}
 	
-	public static String obtenerResultadoMoneda(String montoString) {
+	public static String obtenerResultado(String valor) {
 		
 		double monto;
 		
 		try {
-			monto = Double.parseDouble(montoString);
+			monto = Double.parseDouble(valor);
 		} catch (Exception e) {
-			return "Monto incorrecto";
+			return "Valor incorrecto";
 		}
-
-		double resMonto = 0;
-		String resMoneda;
 		
-		if(monedas.getArgExt().isSelected()) {
-			if(monedas.getDeArgExt().getArgDol().isSelected()) {
-				resMonto = Math.round((monto * DeArgExtCambio.getArgDol()) * 100.0) / 100.0;
-				resMoneda = "Dólar";
-			} else if(monedas.getDeArgExt().getArgEur().isSelected()) {
-				resMonto = Math.round((monto * DeArgExtCambio.getArgEur()) * 100.0) / 100.0;
-				resMoneda = "Euros";
-			} else if(monedas.getDeArgExt().getArgLib().isSelected()) {
-				resMonto = Math.round((monto * DeArgExtCambio.getArgLib()) * 100.0) / 100.0;
-				resMoneda = "Libras Est.";
-			} else if(monedas.getDeArgExt().getArgYen().isSelected()) {
-				resMonto = Math.round((monto * DeArgExtCambio.getArgYen()) * 100.0) / 100.0;
-				resMoneda = "Yen Jap.";
+		if(converSelec == 0) {
+			double resMonto = 0;
+			String resMoneda = "Error";
+			
+			if(monedas.getArgExt().isSelected()) {
+				if(monedas.getDeArgExt().getArgDol().isSelected()) {
+					resMonto = Math.round((monto * DeArgExtCambio.getArgDol()) * 100.0) / 100.0;
+					resMoneda = "Dólar";
+				} else if(monedas.getDeArgExt().getArgEur().isSelected()) {
+					resMonto = Math.round((monto * DeArgExtCambio.getArgEur()) * 100.0) / 100.0;
+					resMoneda = "Euros";
+				} else if(monedas.getDeArgExt().getArgLib().isSelected()) {
+					resMonto = Math.round((monto * DeArgExtCambio.getArgLib()) * 100.0) / 100.0;
+					resMoneda = "Libras Est.";
+				} else if(monedas.getDeArgExt().getArgYen().isSelected()) {
+					resMonto = Math.round((monto * DeArgExtCambio.getArgYen()) * 100.0) / 100.0;
+					resMoneda = "Yen Jap.";
+				} else {
+					resMonto = Math.round((monto * DeArgExtCambio.getArgWon()) * 100.0) / 100.0;
+					resMoneda = "Won sul.";
+				}
 			} else {
-				resMonto = Math.round((monto * DeArgExtCambio.getArgWon()) * 100.0) / 100.0;
-				resMoneda = "Won sul.";
+				if(monedas.getDeExtArg().getArgDol().isSelected()) {
+					resMonto = Math.round((monto * DeExtArgCambio.getArgDol()) * 100.0) / 100.0;
+				} else if(monedas.getDeExtArg().getArgEur().isSelected()) {
+					resMonto = Math.round((monto * DeExtArgCambio.getArgEur()) * 100.0) / 100.0;
+				} else if(monedas.getDeExtArg().getArgLib().isSelected()) {
+					resMonto = Math.round((monto * DeExtArgCambio.getArgLib()) * 100.0) / 100.0;
+				} else if(monedas.getDeExtArg().getArgYen().isSelected()) {
+					resMonto = Math.round((monto * DeExtArgCambio.getArgYen()) * 100.0) / 100.0;
+				} else {
+					resMonto = Math.round((monto * DeExtArgCambio.getArgWon()) * 100.0) / 100.0;
+				}
+				resMoneda = "ARG";
 			}
+			
+			return resMonto + " " + resMoneda;
 		} else {
-			if(monedas.getDeExtArg().getArgDol().isSelected()) {
-				resMonto = Math.round((monto * DeExtArgCambio.getArgDol()) * 100.0) / 100.0;
-			} else if(monedas.getDeExtArg().getArgEur().isSelected()) {
-				resMonto = Math.round((monto * DeExtArgCambio.getArgEur()) * 100.0) / 100.0;
-			} else if(monedas.getDeExtArg().getArgLib().isSelected()) {
-				resMonto = Math.round((monto * DeExtArgCambio.getArgLib()) * 100.0) / 100.0;
-			} else if(monedas.getDeExtArg().getArgYen().isSelected()) {
-				resMonto = Math.round((monto * DeExtArgCambio.getArgYen()) * 100.0) / 100.0;
+			double resMed = 0;
+			String resUnidad = "Error";
+			
+			if(medidas.getMOtro().isSelected()) {
+				if(medidas.getDeMOtro().getMKm().isSelected()) {
+					resMed = Math.round((monto * DeMOtroConversor.getMKm()) * 10000.0) / 10000.0;
+					resUnidad = "kilómetros";
+				} else if(medidas.getDeMOtro().getMCm().isSelected()) {
+					resMed = Math.round((monto * DeMOtroConversor.getMCm()) * 10000.0) / 10000.0;
+					resUnidad = "centímetros";
+				} else if(medidas.getDeMOtro().getMMm().isSelected()) {
+					resMed = Math.round((monto * DeMOtroConversor.getMMm()) * 10000.0) / 10000.0;
+					resUnidad = "milímetros";
+				} else if(medidas.getDeMOtro().getMYar().isSelected()) {
+					resMed = Math.round((monto * DeMOtroConversor.getMYar()) * 10000.0) / 10000.0;
+					resUnidad = "yardas";
+				} else {
+					resMed = Math.round((monto * DeMOtroConversor.getMPul()) * 10000.0) / 10000.0;
+					resUnidad = "pulgadas";
+				}
 			} else {
-				resMonto = Math.round((monto * DeExtArgCambio.getArgWon()) * 100.0) / 100.0;
+				if(medidas.getDeOtroM().getMKm().isSelected()) {
+					resMed = Math.round((monto * DeOtroMConversor.getMKm()) * 10000.0) / 10000.0;
+				} else if(medidas.getDeOtroM().getMCm().isSelected()) {
+					resMed = Math.round((monto * DeOtroMConversor.getMCm()) * 10000.0) / 10000.0;
+				} else if(medidas.getDeOtroM().getMMm().isSelected()) {
+					resMed = Math.round((monto * DeOtroMConversor.getMMm()) * 10000.0) / 10000.0;
+				} else if(medidas.getDeOtroM().getMYar().isSelected()) {
+					resMed = Math.round((monto * DeOtroMConversor.getMYar()) * 10000.0) / 10000.0;
+				} else {
+					resMed = Math.round((monto * DeOtroMConversor.getMPul()) * 10000.0) / 10000.0;
+				}
+				resUnidad = "metros";
 			}
-			resMoneda = "ARG";
+			
+			return resMed + " " + resUnidad;
 		}
-		
-		return resMonto + " " + resMoneda;
 	}
 }
