@@ -1,5 +1,5 @@
-# Challenge 2 de curso ONE de Oracle y Alura - Conversor de divisas y medidas
- Challenge 2 del curso ONE de Oracle y Alura en el que hay que realizar un programa que sea conversor de monedas y también agregar un conversor extra a elección. Se debe utilizar Java. 
+# Conversor de divisas y medidas
+ Challenge 2 del curso ONE (Oracle Next Education) de Oracle y Alura en el que hay que realizar un programa que sea conversor de monedas y también agregar un conversor extra a elección. Se debe utilizar Java. 
  
 ## Requisitos
 
