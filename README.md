@@ -1,5 +1,5 @@
-# Challenge 2 de curso ONE de Oracle y Alura - Conversor de divisas y medidas
- Challenge 2 del curso ONE de Oracle y Alura en el que hay que realizar un programa que sea conversor de monedas y también agregar un conversor extra a elección. Se debe utilizar Java. 
+# Conversor de divisas y medidas
+ Challenge 2 del curso ONE (Oracle Next Education) de Oracle y Alura en el que hay que realizar un programa que sea conversor de monedas y también agregar un conversor extra a elección. Se debe utilizar Java. 
  
 ## Requisitos
 
@@ -31,6 +31,8 @@ La app cuenta con dos opciones de conversores: conversor de monedas y conversor 
 
 Cada conversor cuenta con dos opciones de las que derivan las demas opciones.
 
+Al estar en un conversor, este botón estará marcado con borde celeste.
+
 El conversor de monedas cuenta con la opción de pesos argentinos a otra moneda y de otra moneda a pesos argentinos (las otras monedas serían: dólar, euros, libra esterlina, yen japonés y won sul-coreano).
 
 El conversor de medidas cuenta con la opción de metros a otra medidas y de otra medidas a metros (las otras medidas serían: kilómetro, centímetro, milímetro, yarda y pulgada).
@@ -38,6 +40,8 @@ El conversor de medidas cuenta con la opción de metros a otra medidas y de otra
 El campo de texto cuenta con las validaciones para que no se puedan ingresar otra cosa que no sean números y un solo punto para la parte decimal.
 
 El programa cuenta con manejo de excepciones para casos en el que no se pueda "parsear" el monto ingresado. En ese caso se mostrará el resultado de "Valor incorrecto".
+
+Agregue un link a mi portfolio haciendo click en mi nombre "Matias Chanquia".
 
 ## Instalar
 
