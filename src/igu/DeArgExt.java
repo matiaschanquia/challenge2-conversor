@@ -35,7 +35,6 @@ public class DeArgExt extends JPanel {
 	public DeArgExt() {
 		
 		panelTransparent();
-		
 		grupoDeArgExt = new ButtonGroup();
 		
 		argDol = new JRadioButton();
